@@ -9,7 +9,8 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class UsuarioDao {
-      Statement st;
+
+    Statement st;
 
     public UsuarioDao() {
         try {
@@ -24,14 +25,14 @@ public class UsuarioDao {
         Usuario usuario;
         try {
             rs = st.executeQuery("SELECT  IDUSUARIO, IDGRUPO,LOGIN,"
-                    + " SENHA, NOME,DTALTERACAO,"
+                    + " SENHAUSUARIO, NOMEUSUARIO,DTALTERACAO,"
                     + "FLAGINATIVO FROM USUARIO WHERE IDUSUARIO = " + id);
             while (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("IDUSUARIO"));
                 usuario.setLogin(rs.getString("LOGIN"));
-                usuario.setNome(rs.getString("NOME"));
-                usuario.setSenha(rs.getString("SENHA"));
+                usuario.setNome(rs.getString("NOMEUSUARIO"));
+                usuario.setSenha(rs.getString("SENHAUSUARIO"));
                 return usuario;
             }
         } catch (SQLException ex) {
@@ -40,7 +41,7 @@ public class UsuarioDao {
         return null;
     }
 
-   public boolean insereUsuario(Usuario usuario) {
+    public boolean insereUsuario(Usuario usuario) {
         String sql = "";
         Date data = new Date();
         ResultSet rs;
@@ -54,13 +55,13 @@ public class UsuarioDao {
             }
             usuario.setIdUsuario(id);
             sql = "INSERT INTO usuario( idusuario, idgrupo, login, "
-                    + "senha, nome, dtalteracao, flaginativo)"
+                    + "senhausuario, nomeusuario, dtalteracao, flaginativo)"
                     + "VALUES (" + usuario.getIdUsuario()
                     + ", 0, '" + usuario.getLogin()
                     + "' , '" + usuario.getSenha()
                     + "' , '" + usuario.getNome()
                     + "' , '" + data.toString()
-                    + "', 'F' )";
+                    + "', '' )";
             System.out.println(sql);
             st.execute(sql);
             return true;
@@ -77,8 +78,8 @@ public class UsuarioDao {
                 + "idusuario=" + usuario.getIdUsuario() + ", "
                 + "idgrupo= 0 , "
                 + "login='" + usuario.getLogin() + "',"
-                + "senha='" + usuario.getSenha() + "', "
-                + "nome='" + usuario.getNome() + "',"
+                + "senhausuario='" + usuario.getSenha() + "', "
+                + "nomeusuario='" + usuario.getNome() + "',"
                 + "dtalteracao='" + data + "', "
                 + "flaginativo='F' "
                 + "WHERE idusuario= " + usuario.getIdUsuario() + ";";
@@ -86,7 +87,7 @@ public class UsuarioDao {
             st.executeUpdate(sql);
             return true;
         } catch (SQLException ex) {
-            System.out.println("Erro no Update :"+ex);
+            System.out.println("Erro no Update :" + ex);
         }
         return false;
     }
@@ -97,14 +98,16 @@ public class UsuarioDao {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         try {
             rs = st.executeQuery("SELECT  IDUSUARIO, IDGRUPO,LOGIN,"
-                    + " SENHA, NOME,DTALTERACAO,"
+                    + " SENHAUSUARIO, NOMEUSUARIO,DTALTERACAO,"
                     + "FLAGINATIVO FROM USUARIO ");
             while (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("IDUSUARIO"));
+                usuario.setIdgrupo(rs.getInt("IDGRUPO"));
                 usuario.setLogin(rs.getString("LOGIN"));
-                usuario.setNome(rs.getString("NOME"));
-                usuario.setSenha(rs.getString("SENHA"));
+                usuario.setSenha(rs.getString("SENHAUSUARIO"));
+                usuario.setNome(rs.getString("NOMEUSUARIO"));
+
                 lista.add(usuario);
             }
         } catch (SQLException ex) {
