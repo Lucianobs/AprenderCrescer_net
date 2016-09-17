@@ -1,6 +1,14 @@
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\dao\GrupoDao.java
 C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\dao\Conexao.java
-C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\ws\UsuarioWs.java
-C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\controller\UsuarioController.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\ws\ContaWs.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\controller\ContaController.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\dao\ContaDao.java
 C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\model\Usuario.java
 C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\dao\UsuarioDao.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\model\Grupo.java
 C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\ws\MessageRestService.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\ws\GrupoWs.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\ws\UsuarioWs.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\controller\GrupoController.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\model\Conta.java
+C:\aprendercrescer\AprenderCrescer_net\src\main\java\br\com\senai\aprendercrescer\controller\UsuarioController.java
