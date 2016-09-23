@@ -63,9 +63,10 @@ public class GrupoDao {
             }
             grupo.setIdgrupo(id);
             sql = "INSERT INTO grupo( idgrupo, tipousuario,descricaogrupo)"
-                    + "VALUES (" + grupo.getIdgrupo()
-                    + ", , '" + grupo.getTipousuario()
-                    + "' , '" + grupo.getDescricaogrupo();
+                    + " VALUES (" + grupo.getIdgrupo()
+                    + ", '" + grupo.getTipousuario()
+                    + "' , '" + grupo.getDescricaogrupo()
+                    + "')" ;
             System.out.println(sql);
             st.execute(sql);
             return true;

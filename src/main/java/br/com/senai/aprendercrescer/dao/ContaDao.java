@@ -66,9 +66,10 @@ public class ContaDao {
             conta.setIdconta(id);
             sql = "INSERT INTO conta( idconta, descricao, tipoconta,valor )"
                     + "VALUES (" + conta.getIdconta()
-                    + ", , '" + conta.getDescricao()
+                    + " , '" + conta.getDescricao()
                     + "' , '" + conta.getTipoconta()
-                    + "' , '" + conta.getValor();
+                    + "' , " + conta.getValor()
+                    + ")" ;
             System.out.println(sql);
             st.execute(sql);
             return true;
