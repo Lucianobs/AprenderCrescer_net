@@ -1,4 +1,4 @@
-package br.com.senai.aprendercrescer.ws;
+    package br.com.senai.aprendercrescer.ws;
 
 import br.com.senai.aprendercrescer.controller.UsuarioController;
 import br.com.senai.aprendercrescer.model.Usuario;
@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 @Path("/usuario")
 public class UsuarioWs {
-
+/*
     @GET
     @Path("/getusuario")
     @Produces("application/json")
@@ -37,7 +37,7 @@ public class UsuarioWs {
         }
 
         return Response.status(500).build();
-    }
+    }*/
 
     @GET
     @Path("/getusuarios")
