@@ -57,7 +57,7 @@ public class UsuarioDao {
             sql = "INSERT INTO usuario( idusuario, idgrupo, login, "
                     + "senhausuario, nomeusuario, dtalteracao, flaginativo)"
                     + "VALUES (" + usuario.getIdUsuario()
-                    + ", "+ usuario.getIdgrupo()
+                    + ", "+ usuario.getIdGrupo()
                     + ", '" + usuario.getLogin()
                     + "' , '" + usuario.getSenha()
                     + "' , '" + usuario.getNome()
@@ -104,7 +104,7 @@ public class UsuarioDao {
             while (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("IDUSUARIO"));
-                usuario.setIdgrupo(rs.getInt("IDGRUPO"));
+                usuario.setIdGrupo(rs.getInt("IDGRUPO"));
                 usuario.setLogin(rs.getString("LOGIN"));
                 usuario.setSenha(rs.getString("SENHAUSUARIO"));
                 usuario.setNome(rs.getString("NOMEUSUARIO"));

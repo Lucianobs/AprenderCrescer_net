@@ -3,13 +3,14 @@ package br.com.senai.aprendercrescer.model;
 import java.util.Date;
 
 public class Usuario {
-  private int idUsuario;
-  private int idgrupo;
-  private String login;
-  private String senha;
-  private String nome;
-  private char flagInativo;
-  private Date dtAltercao;
+
+    private int idUsuario;
+    private int idGrupo;
+    private String login;
+    private String senha;
+    private String nome;
+    private char flagInativo;
+    private Date dtAltercao;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -19,12 +20,12 @@ public class Usuario {
         this.idUsuario = idusuario;
     }
 
-    public int getIdgrupo() {
-        return idgrupo;
+    public int getIdGrupo() {
+        return idGrupo;
     }
 
-    public void setIdgrupo(int idgrupo) {
-        this.idgrupo = idgrupo;
+    public void setIdGrupo(int idgrupo) {
+        this.idGrupo = idgrupo;
     }
 
     public String getLogin() {
