@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.senai.aprendercrescer.ws;
 
 import br.com.senai.aprendercrescer.controller.GrupoController;
@@ -28,32 +24,32 @@ import org.json.JSONObject;
 @Path("/grupo")
 public class GrupoWs {
 
-    
-        @GET
-        @Path("/getgrupo")
-        @Produces("application/json")
-        public Response getAllGrupo() {
-            GrupoController grupoController;
-            grupoController = new GrupoController();
-            try {
-                ArrayList<Grupo> lista
-                        = grupoController.getGrupo();
-                JSONObject retorno = new JSONObject();
-                JSONObject jGrupo;
-                for (Grupo grupo : lista) {
-                    jGrupo = new JSONObject();
-                    jGrupo.put("idGrupo", grupo.getIdgrupo());
-                    jGrupo.put("tipousuario", grupo.getTipousuario());
-                    jGrupo.put("descricaogrupo", grupo.getDescricaogrupo());
-                    retorno.put("grupo" + grupo.getIdgrupo(), jGrupo.toString());
-                }
-                return Response.status(200).entity(retorno.toString()).build();
-            } catch (Exception ex) {
-                System.out.println("Erro" + ex);
-                return Response.status(200).entity(ex).build();
+    @GET
+    @Path("/getgrupo")
+    @Produces("application/json")
+    public Response getAllGrupo() {
+        GrupoController grupoController;
+        grupoController = new GrupoController();
+        try {
+            ArrayList<Grupo> lista
+                    = grupoController.getGrupo();
+            JSONObject retorno = new JSONObject();
+            JSONObject jGrupo;
+            for (Grupo grupo : lista) {
+                jGrupo = new JSONObject();
+                jGrupo.put("idGrupo", grupo.getIdgrupo());
+                jGrupo.put("tipousuario", grupo.getTipousuario());
+                jGrupo.put("descricaogrupo", grupo.getDescricaogrupo());
+                retorno.put("grupo" + grupo.getIdgrupo(), jGrupo.toString());
             }
+            return Response.status(200).entity(retorno.toString()).build();
+        } catch (Exception ex) {
+            System.out.println("Erro" + ex);
+            return Response.status(200).entity(ex).build();
         }
- @POST
+    }
+
+    @POST
     @Path("/setgrupo")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json")
@@ -75,10 +71,9 @@ public class GrupoWs {
                     = new JSONObject(requisicaoFinal.toString());
             Grupo grupo = new Grupo();
 
-         
             grupo.setTipousuario(resposta.getString("tipousuario"));
             grupo.setDescricaogrupo(resposta.getString("descricaogrupo"));
-            
+
             new GrupoController().insereGrupo(grupo);
 
             Response.status(200).entity(
@@ -90,4 +85,4 @@ public class GrupoWs {
         return null;
     }
 
-    }
+}

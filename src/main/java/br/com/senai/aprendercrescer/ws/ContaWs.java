@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.senai.aprendercrescer.ws;
 
 import br.com.senai.aprendercrescer.controller.ContaController;
@@ -24,7 +20,7 @@ import org.json.JSONObject;
 
 @Path("/conta")
 public class ContaWs {
-    
+
     @GET
     @Path("/getconta")
     @Produces("application/json")
@@ -34,23 +30,31 @@ public class ContaWs {
         try {
             ArrayList<Conta> lista
                     = contaController.getContas();
-            JSONObject retorno = new JSONObject();
+            StringBuilder retorno = new StringBuilder();
+            retorno.append("[");
+            boolean controle = false;
             JSONObject jConta;
             for (Conta conta : lista) {
+                if (controle) {
+                    retorno.append(" , ");
+                }
                 jConta = new JSONObject();
-                jConta.put("idConta", conta.getIdconta());
-                jConta.put("idgrupo",conta.getDescricao());
-                jConta.put("login",conta.getTipoconta());
-                jConta.put("senha",conta.getValor());
-                retorno.put("conta" + conta.getIdconta(), jConta.toString());
+                jConta.put("idconta", conta.getIdconta());
+                jConta.put("descricao", conta.getDescricao());
+                jConta.put("tipoconta", conta.getTipoconta());
+                jConta.put("valor", conta.getValor());
+                retorno.append(jConta.toString());
+                controle = true;
             }
+            retorno.append("]");
             return Response.status(200).entity(retorno.toString()).build();
         } catch (Exception ex) {
             System.out.println("Erro" + ex);
             return Response.status(200).entity(ex).build();
         }
     }
-  @POST
+
+    @POST
     @Path("/setconta")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json")
@@ -72,11 +76,10 @@ public class ContaWs {
                     = new JSONObject(requisicaoFinal.toString());
             Conta conta = new Conta();
 
-       
             conta.setDescricao(resposta.getString("descricao"));
             conta.setTipoconta(resposta.getString("tipoconta"));
             conta.setValor(resposta.getDouble("valor"));
-            
+
             new ContaController().insereConta(conta);
 
             Response.status(200).entity(
@@ -86,5 +89,5 @@ public class ContaWs {
                     entity(ex.toString()).build();
         }
         return null;
-    }    
+    }
 }

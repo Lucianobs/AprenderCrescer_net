@@ -1,10 +1,10 @@
 'user strict';
 
-myApp.factory('UsuarioFactory', ['$http', function ($http) {
+myApp.factory('ContaFactory', ['$http', function ($http) {
         return{
-            getUsuarios: function (callback) {
+            getConta: function (callback) {
                 $http({"method": "GET",
-                    "url": "/Aprendercrescer/rest/usuario/getusuarios"}).then(
+                    "url": "/Aprendercrescer/rest/conta/getconta"}).then(
                         function (resposta) {
                             callback(resposta);
                         });
