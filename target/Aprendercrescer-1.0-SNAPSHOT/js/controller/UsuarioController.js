@@ -5,8 +5,8 @@ myApp.controller('UsuarioController', function UsuarioController
     $scope.editando = false;
 
     $scope.dados = [{"IdUsuario": 1,
-            "IdGrupo": 1,
-            "Login": "lbs",
+            "idgrupo": 1,
+            "login": "lbs",
             "nome": "Luciano",
             "Ativo": 'T'
         }];
@@ -25,10 +25,21 @@ myApp.controller('UsuarioController', function UsuarioController
     }
     $scope.callbackCadastroUsuario = function (resposta) {
         if (resposta.status != 200) {
-            alert("Errou");
+            //  alert("ERROU");
+            swal("Usuario", "Erro ao cadastrar usuario!", "error");
         } else {
-            alert("OK");
+            //alert("OK");
+            swal("Usuario", "Usuario Cadastrado com Sucesso!", "success");
+            $scope.buscaUsuarios();
+            $scope.limpaCampos();
         }
+    }
+    $scope.limpaCampos = function () {
+        $scope.usuario.nome = "";
+        $scope.usuario.Login = "";
+        $scope.usuario.IdGrupo = "";
+        $scope.usuario.flagInativo = "";
+        $scope.usuario.senha = "";
     }
 })
 

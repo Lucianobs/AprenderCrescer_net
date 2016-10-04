@@ -76,14 +76,14 @@ public class UsuarioDao {
     public boolean updateUsuario(Usuario usuario) {
         Date data = new Date();
         String sql = "UPDATE usuario SET "
-                + "idusuario=" + usuario.getIdUsuario() + ", "
-                + "idgrupo= 0 , "
-                + "login='" + usuario.getLogin() + "',"
+                + "IdUsuario=" + usuario.getIdUsuario() + ", "
+                + "IdGrupo= 0 , "
+                + "Login='" + usuario.getLogin() + "',"
                 + "senhausuario='" + usuario.getSenha() + "', "
                 + "nomeusuario='" + usuario.getNome() + "',"
                 + "dtalteracao='" + data + "', "
                 + "flaginativo='F' "
-                + "WHERE idusuario= " + usuario.getIdUsuario() + ";";
+                + "WHERE IdUsuario= " + usuario.getIdUsuario() + ";";
         try {
             st.executeUpdate(sql);
             return true;

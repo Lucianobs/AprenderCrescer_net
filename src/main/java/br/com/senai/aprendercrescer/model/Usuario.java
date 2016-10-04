@@ -4,36 +4,36 @@ import java.util.Date;
 
 public class Usuario {
 
-    private int idUsuario;
-    private int idGrupo;
-    private String login;
+    private int IdUsuario;
+    private int IdGrupo;
+    private String Login;
     private String senha;
     private String nome;
     private char flagInativo;
     private Date dtAltercao;
 
     public int getIdUsuario() {
-        return idUsuario;
+        return IdUsuario;
     }
 
     public void setIdUsuario(int idusuario) {
-        this.idUsuario = idusuario;
+        this.IdUsuario = idusuario;
     }
 
     public int getIdGrupo() {
-        return idGrupo;
+        return IdGrupo;
     }
 
     public void setIdGrupo(int idgrupo) {
-        this.idGrupo = idgrupo;
+        this.IdGrupo = idgrupo;
     }
 
     public String getLogin() {
-        return login;
+        return Login;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.Login = login;
     }
 
     public String getSenha() {

@@ -11,6 +11,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
         <script type="text/javascript" src="vendor/js/angular.min.js"></script>
+        
+        <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert.css">
 
         <script type="text/javascript" src="js/myApp.js"></script>
 
@@ -27,7 +31,7 @@ and open the template in the editor.
             <h1>Editar</h1>
         </div>
 
-        <form ng-submit="CadastroUsuario(usuario)">
+        <form ng-submit="cadastroUsuario(usuario)">
             <div>
                 <label>Nome: </label>
                 <input ng-model="usuario.nome"type="text"
@@ -35,12 +39,12 @@ and open the template in the editor.
             </div>
             <div>
                 <label>IdGrupo: </label>
-                <input ng-model="usuario.idgrupo"type="text"
+                <input ng-model="usuario.IdGrupo"type="text"
                        placeholder="Digite seu IdGrupo">
             </div>
             <div>
                 <label>Login: </label>
-                <input ng-model="usuario.logim"type="text"
+                <input ng-model="usuario.Login"type="text"
                        placeholder="Digite seu Login">
             </div>
             <div>
@@ -50,7 +54,7 @@ and open the template in the editor.
             </div>
             <div>
                 <label>Ativo: </label>
-                <input ng-model="usuario.ativo"type="text"
+                <input ng-model="usuario.flagInativo"type="text"
                        placeholder="Digite seu ativo">
             </div>
             <button ng-show="editando" type="submit" >Salvar</button>

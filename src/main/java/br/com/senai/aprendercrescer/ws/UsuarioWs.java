@@ -60,9 +60,9 @@ public class UsuarioWs {
                 }
 
                 jUsuario = new JSONObject();
-                jUsuario.put("idUsuario", usuario.getIdUsuario());
-                jUsuario.put("idGrupo", usuario.getIdGrupo());
-                jUsuario.put("login", usuario.getLogin());
+                jUsuario.put("IdUsuario", usuario.getIdUsuario());
+                jUsuario.put("IdGrupo", usuario.getIdGrupo());
+                jUsuario.put("Login", usuario.getLogin());
                 jUsuario.put("senha", usuario.getSenha());
                 jUsuario.put("nome", usuario.getNome());
                 jUsuario.put("flagInativo", usuario.getFlagInativo() + "");
@@ -102,21 +102,21 @@ public class UsuarioWs {
                     = new JSONObject(requisicaoFinal.toString());
             Usuario usuario = new Usuario();
 
-            usuario.setLogin(resposta.getString("login"));
+            usuario.setLogin(resposta.getString("Login"));
             usuario.setNome(resposta.getString("nome"));
             usuario.setSenha(resposta.getInt("senha") + "");
-            usuario.setIdGrupo(resposta.getInt("idgrupo"));
-            usuario.setFlagInativo(resposta.getString("FlagInativo").toCharArray()[0]);
+            usuario.setIdGrupo(resposta.getInt("IdGrupo"));
+            usuario.setFlagInativo(resposta.getString("flagInativo").toCharArray()[0]);
 
-            new UsuarioController().insereUsuario(usuario);
-
-            Response.status(200).entity(
-                    usuario.toString()).build();
+            if (new UsuarioController().insereUsuario(usuario)) {
+                return Response.status(200).entity("{\"result\"" + ":\"Cadastrado\"}").build();
+            } else {
+                return Response.status(501).entity("[\"result\":" + "\"Erro no Cadastro\"}").build();
+            }
         } catch (Exception ex) {
             return Response.status(501).
                     entity(ex.toString()).build();
         }
-        return null;
     }
 
 }
