@@ -57,7 +57,7 @@ public class UsuarioDao {
             sql = "INSERT INTO usuario( idusuario, idgrupo, login, "
                     + "senhausuario, nomeusuario, dtalteracao, flaginativo)"
                     + "VALUES (" + usuario.getIdUsuario()
-                    + ", "+ usuario.getIdGrupo()
+                    + ", " + usuario.getIdGrupo()
                     + ", '" + usuario.getLogin()
                     + "' , '" + usuario.getSenha()
                     + "' , '" + usuario.getNome()
@@ -77,12 +77,12 @@ public class UsuarioDao {
         Date data = new Date();
         String sql = "UPDATE usuario SET "
                 + "IdUsuario=" + usuario.getIdUsuario() + ", "
-                + "IdGrupo= 0 , "
+                + "IdGrupo= '" + usuario.getIdGrupo() + "',"
                 + "Login='" + usuario.getLogin() + "',"
                 + "senhausuario='" + usuario.getSenha() + "', "
                 + "nomeusuario='" + usuario.getNome() + "',"
                 + "dtalteracao='" + data + "', "
-                + "flaginativo='F' "
+                + "flaginativo='" + usuario.getFlagInativo() + "',"
                 + "WHERE IdUsuario= " + usuario.getIdUsuario() + ";";
         try {
             st.executeUpdate(sql);
@@ -100,7 +100,7 @@ public class UsuarioDao {
         try {
             rs = st.executeQuery("SELECT  IDUSUARIO, IDGRUPO,LOGIN,"
                     + " SENHAUSUARIO, NOMEUSUARIO,DTALTERACAO,"
-                    + "FLAGINATIVO FROM USUARIO ");
+                    + "FLAGINATIVO FROM USUARIO ORDER BY IDUSUARIO");
             while (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("IDUSUARIO"));
@@ -108,6 +108,7 @@ public class UsuarioDao {
                 usuario.setLogin(rs.getString("LOGIN"));
                 usuario.setSenha(rs.getString("SENHAUSUARIO"));
                 usuario.setNome(rs.getString("NOMEUSUARIO"));
+               // usuario.setFlagInativo(rs.getString("FLAGINATIVO").toCharArray()[0]);
 
                 lista.add(usuario);
             }

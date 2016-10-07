@@ -10,10 +10,13 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.DELETE;
 import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -119,4 +122,61 @@ public class UsuarioWs {
         }
     }
 
+    @POST
+    @Path("/updateusuario")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Response updateUsuario(InputStream dadosServ) {
+        StringBuilder requisicaoFinal = new StringBuilder();
+        String batata = "";
+        try {
+            BufferedReader in
+                    = new BufferedReader(
+                            new InputStreamReader(dadosServ));
+            String requisicao = null;
+            while ((requisicao = in.readLine()) != null) {
+                requisicaoFinal.append(requisicao);
+                batata = batata + requisicao;
+            }
+            System.out.println(requisicaoFinal.toString());
+
+            JSONObject resposta
+                    = new JSONObject(requisicaoFinal.toString());
+            Usuario usuario = new Usuario();
+
+            usuario.setIdUsuario(resposta.getInt("IdUsuario"));
+            usuario.setLogin(resposta.getString("Login"));
+            usuario.setNome(resposta.getString("nome"));
+            usuario.setSenha(resposta.getInt("senha") + "");
+            usuario.setIdGrupo(resposta.getInt("IdGrupo"));
+            usuario.setFlagInativo(resposta.getString("flagInativo").toCharArray()[0]);
+
+            if (new UsuarioController().insereUsuario(usuario)) {
+                return Response.status(200).entity("{\"result\"" + ":\"Cadastrado\"}").build();
+            } else {
+                return Response.status(501).entity("[\"result\":" + "\"Erro no Cadastro\"}").build();
+            }
+        } catch (Exception ex) {
+            return Response.status(501).
+                    entity(ex.toString()).build();
+        }
+    }
+
+    @DELETE
+    @Path("/deleteusuario/{idusuario}")
+
+    public Response deleteUsuario(@PathParam("idusuario") int IdUsuario) {
+
+        try {
+            if (new UsuarioController().deleteUsuario(IdUsuario)) {
+                Response.status(200).build();
+            } else {
+                Response.status(400).build();
+            }
+        } catch (Exception ex) {
+            return Response.status(400).entity(ex.toString()).build();
+        }
+
+        return Response.status(200).build();
+    }
 }

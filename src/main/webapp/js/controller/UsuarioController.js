@@ -17,29 +17,56 @@ myApp.controller('UsuarioController', function UsuarioController
     $scope.callbackUsuarios = function (resposta) {
         $scope.dados = resposta.data;
     }
-    $scope.editarUsuario = function () {
-        $scope.editando = !$scope.editando;
+    $scope.editarUsuario = function (item) {
+        $scope.editando = true;
+        $scope.usuario = angular.copy(item);
     }
     $scope.cadastroUsuario = function (usuario) {
-        UsuarioFactory.setUsuario($scope.callbackCadastroUsuario, usuario);
+        if (usuario.IdUsuario && usuario.IdUsuario != 0) {
+            UsuarioFactory.updateUsuario($scope.callbackCadastroUsuario, usuario);
+        } else {
+            UsuarioFactory.setUsuario($scope.callbackCadastroUsuario, usuario);
+        }
     }
     $scope.callbackCadastroUsuario = function (resposta) {
         if (resposta.status != 200) {
-            //  alert("ERROU");
-            swal("Usuario", "Erro ao cadastrar usuario!", "error");
+            if ($scope.editando == true) {
+                swal("Usuario", "Erro ao Atualizar usuario!", "error");
+            } else {
+                swal("Usuario", "Erro ao Cadastrar usuario!", "error");
+            }
         } else {
-            //alert("OK");
-            swal("Usuario", "Usuario Cadastrado com Sucesso!", "success");
+            if ($scope.editando == true) {
+                swal("Usuario", "Usuario Salvo com Sucesso", "success");
+            } else {
+                swal("Usuario", "Usuario Cadastrado com Sucesso", "success");
+            }
             $scope.buscaUsuarios();
             $scope.limpaCampos();
         }
     }
     $scope.limpaCampos = function () {
+        $scope.usuario.IdUsuario = "";
         $scope.usuario.nome = "";
         $scope.usuario.Login = "";
         $scope.usuario.IdGrupo = "";
         $scope.usuario.flagInativo = "";
         $scope.usuario.senha = "";
+        $scope.editando = false;
+    }
+    $scope.deleteUsuario = function (id) {
+        UsuarioFactory.deleteUsuario($scope.callbackDeleteUsuario, id);
+        if (resposta.status != 200) {
+            swal("Usuario", "Erro ao Deletar usuario!", "error");
+        } else {
+            swal("Usuario", "Usuario Deletado com sucesso", "success");
+            $scope.limpaCampos();
+        }
+
+
+    }
+    $scope.callbackDeleteUsuario = function (resposta) {
+
     }
 })
 

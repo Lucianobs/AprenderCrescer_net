@@ -11,9 +11,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
         <script type="text/javascript" src="vendor/js/angular.min.js"></script>
-        
+
         <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
-        
+
         <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert.css">
 
         <script type="text/javascript" src="js/myApp.js"></script>
@@ -85,8 +85,8 @@ and open the template in the editor.
                             <td>{{item.nome}}</td>
                             <td>{{item.Ativo}}</td>
                             <td>
-                                <button ng-click="editarUsuario()">Editar</button>
-                                <button>Remover</button>
+                                <button ng-click="editarUsuario(item)">Editar</button>
+                                <button ng-click="deleteUsuario(item.IdUsuario)">Remover</button>
                             </td>
                         </tr>
                     </tbody>
