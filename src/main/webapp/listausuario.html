@@ -10,6 +10,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+        <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+
         <script type="text/javascript" src="vendor/js/angular.min.js"></script>
 
         <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
@@ -24,73 +28,83 @@ and open the template in the editor.
 
     </head>
     <body ng-controller = "UsuarioController" ng-init="buscaUsuarios()">
-        <div ng-hide="editando">
-            <h1>Cadastro</h1>
-        </div>
-        <div ng-show="editando">
-            <h1>Editar</h1>
-        </div>
+        <div class="container">
+            <div class="row">
+                <div ng-hide="editando"class="col-xs-12">
+                    <h1>Cadastro</h1>
+                </div>
+                <div ng-show="editando" class="col-xs-12">
+                    <h1>Editar</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <form ng-submit="cadastroUsuario(usuario)">
+                        <div class="form-group" >
+                            <label class="control-label">Nome: </label>
+                            <input class="form-control" ng-model="usuario.nome"type="text"
+                                   placeholder="Digite seu Nome">
+                        </div>
 
-        <form ng-submit="cadastroUsuario(usuario)">
-            <div>
-                <label>Nome: </label>
-                <input ng-model="usuario.nome"type="text"
-                       placeholder="Digite seu Nome">
-            </div>
-            <div>
-                <label>IdGrupo: </label>
-                <input ng-model="usuario.IdGrupo"type="text"
-                       placeholder="Digite seu IdGrupo">
-            </div>
-            <div>
-                <label>Login: </label>
-                <input ng-model="usuario.Login"type="text"
-                       placeholder="Digite seu Login">
-            </div>
-            <div>
-                <label>Senha: </label>
-                <input ng-model="usuario.senha"type="password"
-                       placeholder="Digite sua Senha">
-            </div>
-            <div>
-                <label>Ativo: </label>
-                <input ng-model="usuario.flagInativo"type="text"
-                       placeholder="Digite seu ativo">
-            </div>
-            <button ng-show="editando" type="submit" >Salvar</button>
-            <button ng-hide="editando" type="submit">Adicionar</button>
+                        <div class="form-group" >
+                            <label class="control-label">IdGrupo: </label>
+                            <input class="form-control" ng-model="usuario.IdGrupo"type="text"
+                                   placeholder="Digite seu IdGrupo">
+                        </div>
+                        <div class="form-group" >
+                            <label class="control-label">Login: </label>
+                            <input class="form-control" ng-model="usuario.Login"type="text"
+                                   placeholder="Digite seu Login">
+                        </div>
 
-        </form>
+                        <div class="form-group" >
+                            <label class="control-label">Senha: </label>
+                            <input class="form-control" ng-model="usuario.senha"type="password"
+                                   placeholder="Digite sua Senha">
+                        </div>
 
+                        <div class="form-group" >
+                            <label class="control-label">Ativo: </label>
+                            <input class="form-control" ng-model="usuario.flagInativo"type="text"
+                                   placeholder="Digite seu ativo">
+                        </div>
+                        <button class="btn btn-primary" ng-show="editando" type="submit" >Salvar</button>
+                        <button class="btn btn-primary" ng-hide="editando" type="submit">Adicionar</button>
 
-        <div>
-            <h1>Lista Usuario </h1>
-            <div>
-                <table>
-                    <thead> 
-                        <tr>
-                            <th>IdUsuario</th>
-                            <th>IdGrupo</th>
-                            <th>Login</th>
-                            <th>nome</th>
-                            <th>Ativo</th>
-                            <th>Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in dados">
-                            <td>{{item.IdUsuario}}</td>
-                            <td>{{item.IdGrupo}}</td>
-                            <td>{{item.Login}}</td>
-                            <td>{{item.nome}}</td>
-                            <td>{{item.Ativo}}</td>
-                            <td>
-                                <button ng-click="editarUsuario(item)">Editar</button>
-                                <button ng-click="deleteUsuario(item.IdUsuario)">Remover</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    </form>
+                </div>
+                <div class="col-xs-9">
+                    <div>
+                        <h1>Lista Usuario </h1>
+                        <div>
+                            <table>
+                                <thead> 
+                                    <tr>
+                                        <th>IdUsuario</th>
+                                        <th>IdGrupo</th>
+                                        <th>Login</th>
+                                        <th>nome</th>
+                                        <th>Ativo</th>
+                                        <th>Opções</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in dados">
+                                        <td>{{item.IdUsuario}}</td>
+                                        <td>{{item.IdGrupo}}</td>
+                                        <td>{{item.Login}}</td>
+                                        <td>{{item.nome}}</td>
+                                        <td>{{item.Ativo}}</td>
+                                        <td>
+                                            <button class="btn btn-success " ng-click="editarUsuario(item)">Editar</button>
+                                            <button class="btn btn-danger" ng-click="deleteUsuario(item)">Remover</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

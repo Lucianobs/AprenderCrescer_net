@@ -55,7 +55,7 @@ public class UsuarioDao {
             }
             usuario.setIdUsuario(id);
             sql = "INSERT INTO usuario( idusuario, idgrupo, login, "
-                    + "senhausuario, nomeusuario, dtalteracao, flaginativo)"
+                    + "senhausuario, nomeusuario, dtalteracao, flagInativo)"
                     + "VALUES (" + usuario.getIdUsuario()
                     + ", " + usuario.getIdGrupo()
                     + ", '" + usuario.getLogin()
@@ -82,7 +82,7 @@ public class UsuarioDao {
                 + "senhausuario='" + usuario.getSenha() + "', "
                 + "nomeusuario='" + usuario.getNome() + "',"
                 + "dtalteracao='" + data + "', "
-                + "flaginativo='" + usuario.getFlagInativo() + "',"
+                + "flagInativo='F'"
                 + "WHERE IdUsuario= " + usuario.getIdUsuario() + ";";
         try {
             st.executeUpdate(sql);
@@ -108,7 +108,7 @@ public class UsuarioDao {
                 usuario.setLogin(rs.getString("LOGIN"));
                 usuario.setSenha(rs.getString("SENHAUSUARIO"));
                 usuario.setNome(rs.getString("NOMEUSUARIO"));
-               // usuario.setFlagInativo(rs.getString("FLAGINATIVO").toCharArray()[0]);
+                //usuario.setFlagInativo(rs.getString("FLAGINATIVO").toCharArray()[0]);
 
                 lista.add(usuario);
             }

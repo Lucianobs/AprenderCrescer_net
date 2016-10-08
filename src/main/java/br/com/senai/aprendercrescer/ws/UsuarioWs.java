@@ -163,20 +163,29 @@ public class UsuarioWs {
     }
 
     @DELETE
-    @Path("/deleteusuario/{idusuario}")
-
-    public Response deleteUsuario(@PathParam("idusuario") int IdUsuario) {
-
+    @Path("/deleteusuario")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Response deleteUsuario(InputStream dadosServ) {
+        StringBuffer requisicaoFinal = new StringBuffer();
         try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(dadosServ));
+            String requisicao = null;
+            while ((requisicao = in.readLine()) != null) {
+                requisicaoFinal.append(requisicao);
+            }
+            System.out.println(requisicaoFinal.toString());
+            JSONObject resposta = new JSONObject(requisicaoFinal.toString());
+            System.out.println("" + resposta.getInt("IdUsuario"));
+            int IdUsuario = resposta.getInt("IdUsuario");
+
             if (new UsuarioController().deleteUsuario(IdUsuario)) {
-                Response.status(200).build();
+                return Response.status(200).entity("{\"result\": \"sucesso\"}").build();
             } else {
-                Response.status(400).build();
+                return Response.status(500).entity("{\"result\": \"error\"}").build();
             }
         } catch (Exception ex) {
-            return Response.status(400).entity(ex.toString()).build();
+            return Response.status(500).entity(ex.toString()).build();
         }
-
-        return Response.status(200).build();
     }
 }

@@ -31,12 +31,16 @@ myApp.factory('UsuarioFactory', ['$http', function ($http) {
                     callback(resposta);
                 });
             },
-            deletUsuario: function (callback, id) {
-                $http({"method": "GET",
-                    "url": "/Aprendercrescer/rest/usuario/deleteusuarios/" + id}).then(
-                        function (resposta) {
-                            callback(resposta);
-                        });
+            deleteUsuario: function (callback, usuario) {
+                $http({"method": "DELETE",
+                    "url": "/Aprendercrescer/rest/usuario/deleteusuario",
+                    "headers": {"Content-Type": "application/json"},
+                    "data": usuario
+                }).then(function (resposta) {
+                    callback(resposta);
+                }, function (resposta) {
+                    callback(resposta);
+                });
             },
         };
     }]);

@@ -46,27 +46,23 @@ myApp.controller('UsuarioController', function UsuarioController
         }
     }
     $scope.limpaCampos = function () {
-        $scope.usuario.IdUsuario = "";
-        $scope.usuario.nome = "";
-        $scope.usuario.Login = "";
-        $scope.usuario.IdGrupo = "";
-        $scope.usuario.flagInativo = "";
-        $scope.usuario.senha = "";
+        var usuario = {IdUsuario: "", nome: "", Login: "",
+            IdGrupo: "", flagInativo: "", senha: ""
+        }
+        $scope.usuario = usuario;
         $scope.editando = false;
     }
-    $scope.deleteUsuario = function (id) {
-        UsuarioFactory.deleteUsuario($scope.callbackDeleteUsuario, id);
+    $scope.deleteUsuario = function (usuario) {
+        UsuarioFactory.deleteUsuario($scope.callbackDeleteUsuario, usuario);
+    }
+    $scope.callbackDeleteUsuario = function (resposta) {
         if (resposta.status != 200) {
             swal("Usuario", "Erro ao Deletar usuario!", "error");
         } else {
             swal("Usuario", "Usuario Deletado com sucesso", "success");
             $scope.limpaCampos();
+            $scope.buscaUsuarios();
         }
-
-
-    }
-    $scope.callbackDeleteUsuario = function (resposta) {
-
     }
 })
 

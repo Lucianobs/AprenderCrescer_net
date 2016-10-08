@@ -12,3 +12,4 @@ br\com\senai\aprendercrescer\ws\UsuarioWs.class
 br\com\senai\aprendercrescer\dao\GrupoDao.class
 br\com\senai\aprendercrescer\ws\GrupoWs.class
 br\com\senai\aprendercrescer\ws\MessageRestService.class
+.netbeans_automatic_build
