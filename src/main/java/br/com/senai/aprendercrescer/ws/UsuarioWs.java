@@ -66,8 +66,8 @@ public class UsuarioWs {
                 jUsuario.put("IdUsuario", usuario.getIdUsuario());
                 jUsuario.put("IdGrupo", usuario.getIdGrupo());
                 jUsuario.put("Login", usuario.getLogin());
-                jUsuario.put("senha", usuario.getSenha());
-                jUsuario.put("nome", usuario.getNome());
+                jUsuario.put("senha", usuario.getSenhaUsuario());
+                jUsuario.put("nome", usuario.getNomeUsuario());
                 jUsuario.put("flagInativo", usuario.getFlagInativo() + "");
                 retorno.append(jUsuario.toString());
                 controle = true;
@@ -106,10 +106,10 @@ public class UsuarioWs {
             Usuario usuario = new Usuario();
 
             usuario.setLogin(resposta.getString("Login"));
-            usuario.setNome(resposta.getString("nome"));
-            usuario.setSenha(resposta.getInt("senha") + "");
+            usuario.setNomeUsuario(resposta.getString("nome"));
+            usuario.setSenhaUsuario(resposta.getInt("senha") + "");
             usuario.setIdGrupo(resposta.getInt("IdGrupo"));
-            usuario.setFlagInativo(resposta.getString("flagInativo").toCharArray()[0]);
+            usuario.setFlagInativo(resposta.getString("flagInativo"));
 
             if (new UsuarioController().insereUsuario(usuario)) {
                 return Response.status(200).entity("{\"result\"" + ":\"Cadastrado\"}").build();
@@ -146,10 +146,10 @@ public class UsuarioWs {
 
             usuario.setIdUsuario(resposta.getInt("IdUsuario"));
             usuario.setLogin(resposta.getString("Login"));
-            usuario.setNome(resposta.getString("nome"));
-            usuario.setSenha(resposta.getInt("senha") + "");
+            usuario.setNomeUsuario(resposta.getString("nome"));
+            usuario.setSenhaUsuario(resposta.getInt("senha") + "");
             usuario.setIdGrupo(resposta.getInt("IdGrupo"));
-            usuario.setFlagInativo(resposta.getString("flagInativo").toCharArray()[0]);
+            usuario.setFlagInativo(resposta.getString("flagInativo"));
 
             if (new UsuarioController().insereUsuario(usuario)) {
                 return Response.status(200).entity("{\"result\"" + ":\"Cadastrado\"}").build();

@@ -68,8 +68,10 @@ and open the template in the editor.
                             <input class="form-control" ng-model="usuario.flagInativo"type="text"
                                    placeholder="Digite seu ativo">
                         </div>
-                        <button class="btn btn-primary" ng-show="editando" type="submit" >Salvar</button>
-                        <button class="btn btn-primary" ng-hide="editando" type="submit">Adicionar</button>
+                        <button class="btn btn-primary " ng-show="editando" type="submit" > 
+                            <i class = "glyphicon glyphicon-floppy-disk"></i></button>
+                        <button class="btn btn-primary " ng-hide="editando" type="submit"> 
+                            <i class = "glyphicon glyphicon-floppy-disk"></i></button>
 
                     </form>
                 </div>
@@ -77,7 +79,7 @@ and open the template in the editor.
                     <div>
                         <h1>Lista Usuario </h1>
                         <div>
-                            <table>
+                            <table class="table table-striped">
                                 <thead> 
                                     <tr>
                                         <th>IdUsuario</th>
@@ -96,8 +98,11 @@ and open the template in the editor.
                                         <td>{{item.nome}}</td>
                                         <td>{{item.Ativo}}</td>
                                         <td>
-                                            <button class="btn btn-success " ng-click="editarUsuario(item)">Editar</button>
-                                            <button class="btn btn-danger" ng-click="deleteUsuario(item)">Remover</button>
+                                            <button class="btn btn-success" ng-click=" editarUsuario(item)"> 
+                                                <i class="glyphicon glyphicon-pencil"></i></button>
+
+                                            <button class="btn btn-danger" ng-click=" deleteUsuario(item)">
+                                                <i class = "glyphicon glyphicon-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>

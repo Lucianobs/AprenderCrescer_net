@@ -78,7 +78,7 @@ public class ContaWs {
 
             conta.setDescricao(resposta.getString("descricao"));
             conta.setTipoconta(resposta.getString("tipoconta"));
-            conta.setValor(resposta.getDouble("valor"));
+            conta.setValor(Float.parseFloat(resposta.getString("valor")));
 
             new ContaController().insereConta(conta);
 

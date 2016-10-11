@@ -15,18 +15,17 @@ public class UsuarioController {
     }
 
     public boolean insereUsuario(Usuario usuario) {
-        if (usuario.getIdUsuario() != 0) {
-            return usuarioDao.updateUsuario(usuario);
-        } else {
-            return usuarioDao.insereUsuario(usuario);
-        }
+        usuarioDao.gravar(usuario);
+        return true;
     }
 
     public ArrayList<Usuario> getUsuarios() {
-        return usuarioDao.getUsuarios();
+        return usuarioDao.getAll();
     }
 
     public boolean deleteUsuario(int id) {
-        return usuarioDao.deleteUsuario(id);
+        Usuario us = new Usuario(id);
+        usuarioDao.apagar(us);
+        return true;
     }
 }
